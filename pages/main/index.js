@@ -9,10 +9,15 @@ async function getData() {
   }
   getData();
   let imageArray = document.querySelector('.image');
-  const createCardTemplate = () => {
+
+
+  
+ 
+  const createCardTemplate = (n) => {
     let card = document.createElement("div");
     card.classList.add("friends-card");
     console.log(data[0].age);
+    
     let imageDiv = document.createElement('div');
     let image = document.createElement('img');
     imageDiv.classList.add('card-img');
@@ -26,12 +31,16 @@ async function getData() {
     card.append(imageDiv);
     imageDiv.append(image);
     card.append(cardName);
-    let i = Math.floor(Math.random()*8);
-    cardPName.innerText = data[i].name;
-    image.src = data[i].img;
+    
+    cardPName.innerText = data[n].name;
+    image.src = data[n].img;
+    
     cardName.append(cardPName);
     card.append(cardBtn);
+ 
     return card;
+    
+   
   }
   const BTN_LEFT = document.querySelector("#btn-left");
   const BTN_RIGHT = document.querySelector("#btn-right");
@@ -45,6 +54,7 @@ async function getData() {
   };
   const moveRight = () => {
     CAROUSEL.classList.add("transition-right");
+    
     BTN_LEFT.removeEventListener("click", moveLeft);
     BTN_RIGHT.removeEventListener("click", moveRight);
   };
@@ -64,12 +74,21 @@ async function getData() {
       document.querySelector("#item-active").innerHTML = ITEM_RIGHT.innerHTML;
     }
     changedItem.innerHTML = "";
+      
+  let arr = [0,1,2,3,4,5,6,7];
+  let a = arr.splice(Math.floor(Math.random()*8),1);
    
+
+  let b = arr.splice(Math.floor(Math.random()*7),1);
+
+ console.log(arr)
+  let c = arr.splice(Math.floor(Math.random()*6),1);
+
      
-    const card  = createCardTemplate();
-    changedItem.appendChild(createCardTemplate());
-    changedItem.appendChild(createCardTemplate());
-    changedItem.appendChild(createCardTemplate());
+
+    changedItem.appendChild(createCardTemplate(a));
+    changedItem.appendChild(createCardTemplate(b));
+    changedItem.appendChild(createCardTemplate(c));
 
     BTN_LEFT.addEventListener("click", moveLeft);
     BTN_RIGHT.addEventListener("click", moveRight);
